@@ -4,13 +4,13 @@
 // * Snipets: mali delovi koda
 
 // * prop da prosledimo: da uhvatimo: ({movie}), prop da prihvata podatke
-const MovieCard2 = ({movie}) => {
+const MovieCard2 = () => {
 
     return (
         <>
-            <img src={ movie.Poster} alt="" />
+            {/* <img src={ movie.Poster} alt="" />
             <h3>{ movie.Title}</h3>
-            <p>{ movie.Plot }</p>
+            <p>{ movie.Plot }</p> */}
         </>
     )
 }

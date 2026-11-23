@@ -52,65 +52,76 @@ import MovieCard from "../Templates/Snipets/MovieCard";
  */
 
 const Movies2 = () => {
-    // za text
+    
+    // text: text za movieName / napravili smo state koji ce nam drzati ime tog filma: setMovieName
     // const [movieName, setMovieName] = useState();
-    const [movieName, setMovieName] = useState("Lord of the rings")
+
+    // resenje: treba da pokazemo: lord of the rings filmove na page load-u (da to bude default) -> da bude default: useState("Lord of the rings") -> da prvi put kada se ocita komponenta da pozove * !
+    const [movieName, setMovieName] = useState("Lord of the rings"); // difoltna vrednost !
+
     // / resenje: na search movie pretraga da es promeni slika
+
+    // * vezba: da napravima: npr: akop ukucamo: hobbit u pretrazi(Search movi) da on uzme i promeni na osnovu filma koji je nasao, na stranici da promeni sta pise
     // const [movieData, setMovieData] = useState({}) // {} = prazan objekat
-    const [movieData, setMovieData] = useState({})
+    const [movieData, setMovieData] = useState({});
     
     // metoda(funkcija)
     // response vec dobijamo od servera: console.log(response.data)
     const searchMovieByTitle = () => {
-        console.log("Hello World")
-
-
-        axios.get(`${import.meta.env.VITE_OMDBAPI_URL}?t=${movieName}&apikey=${import.meta.env.VITE_OMDBAPI_KEY}`)
-
-        // axios.get(import.meta.env.VITE_OMDBAPI_URL+"?t="+movieName+"&apikey="+import.meta.env.VITE_OMDBAPI_KEY)
-
-            // resenje: za movieData
-            // -> kada doijem oodgovor od servera: mi hocemo da podesimo kao: movieData !*
-            .then(response => setMovieData(response.data))
-            // .then(response => console.log(response.data))
+        // console.log("Hello World")
+        console.log(movieName)
 
         // * DOMACI: cim se ocita stranica u konzoli ispisati da pokusa da nadje Lord of the rings / treba da pozovemo api i da nadje sve filmove Lord of the rings
 
+        axios.get(`${import.meta.env.VITE_OMDBAPI_URL}?t=${movieName}&apikey=${import.meta.env.VITE_OMDBAPI_KEY}`)
+
+        // movieName: pretraga na osnovu movieName koji smo ukucali *
+        // axios.get(import.meta.env.VITE_OMDBAPI_URL+"?t="+movieName+"&apikey="+import.meta.env.VITE_OMDBAPI_KEY)
+            // * resenje: za movieData
+            // response vec dobijamo od servera, i umesto console.log,  setMovieData
+            // -> kada doijem oodgovor od servera: mi hocemo da podesimo kao: movieData !*
+            .then(response => setMovieData(response.data))
+            // .then(response => setMovieData(response.data))
+            // .then(response => console.log(response.data))
 
     }
 
+    // * uloga useEffect: jeste da izvrsi se neki kod na pageload ili kada komponenta renderovanje, kada se zavrsi renderovanje, tad taj kod treba da izvrsi 
+    // Kako se pise
+    useEffect( () => {
+        searchMovieByTitle();
+    }, []);  // prazni array[] -> u prevodu: treba da prosledimo metodu koja se poziva da renderuje / * ako zelimo da se nesto izvrsi samo jednom: staviti  prazan array[] * !
+
     // useEffect( () => {
     //     searchMovieByTitle()
-    // }, []); // ako zelimo da se nesatoo izvrsi samo jednom: staviti  prazan array[]
+    // }, []); // ako zelimo da se nesatoo izvrsi samo jednom: staviti  prazan array[] *!
+
+    // * pozivanje nase metode: metoda cita iz steta: rekli smo da je defaultni state: useState("Lord of the rings") / ** on po defaultu podesava lord of the rings poziva api
 
     // searchMovieByTitle();
+    // searchMovieByTitle();
 
-    // nasa meteoda cita iz statea: po defaultui podesava:  useState("Lord of the rings")
+    // * nasa meteoda cita iz statea: po defaultui podesava:  useState("Lord of the rings")
     // searchMovieByTitle(); // pozivanje metode
+
+    // api se pozvao 100 puta, kada ocitamo komponentu( promenimo state), ona es ponovo rirenderuje(iz pocetka se izvrsava) i dobijamo infinite loop // Mi zeli, da se izvrsi samo jednom useEffect()
     // setMovieName("Test")
 
     return (
         <>
             <form>
-                <input type="text" />
+                <input type="text" onInput={ (e) => setMovieName(e.currentTarget.value) }/>
                 <button type="button" onClick={searchMovieByTitle}>Search movie</button>
             </form>
 
             {/* resenje domaceg: movieData */}
-
-
-            {/* <img src={ movieData.Poster } alt="" />
-            <h3>{ movieData.Title }</h3>
-            <p>{ movieData.Plot }</p> */}
-            
+            <img src={movieData.Poster} alt="" />
+            <h3>{movieData.Title}</h3>
+            <p>{movieData.Plot}</p>
 
             {/* movieCard: za pokazivanje podataka , preko propa prihvata podatke ({movie}) , pozovemo movieCard i prosledimo informacije  */}
             {/* <MovieCard movie={movieData}/> */}
-
-            {/* <form>
-                <input type="text" onInput={ (e) => searchMovieByTitle(e.currentTarget.value)}/>
-                <button type="button" onClick={searchMovieByTitle}>Search movie</button>
-            </form> */}
+            
         </>
     )
 }

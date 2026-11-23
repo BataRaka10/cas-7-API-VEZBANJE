@@ -58,41 +58,41 @@ const Movies3 = () => {
 
     // resenje: treba da pokazemo: lord of the rings filmove na page load-u (da to bude default) -> da bude default: useState("Lord of the rings") -> da prvi put kada se ocita komponenta da pozove * !
 
-    const [movieName, setMovieName] = useState("Lord of the rings");
+    // const [movieName, setMovieName] = useState("Lord of the rings");
 
     // resenje: na search movie pretraga da se promeni slika
-    const [movieData, setMovieData] = useState({}); // {} = prazan objekat
+    // const [movieData, setMovieData] = useState({}); // {} = prazan objekat
 
     // response vec dobijamo od servera: console.log(response.data)
 
     // metoda:
-    const searchMovieByTitle = () => {
+    // const searchMovieByTitle = () => {
         // console.log("Hello World")
-        console.log(movieName)
+        // console.log(movieName)
 
         // * DOMACI: cim se ocita stranica u konzoli ispisati da pokusa da nadje Lord of the rings / treba da pozovemo api i da nadje sve filmove Lord of the rings
 
         // * umesto Terminator ide movieName: zbog pretrage na osnovu movieName koji smo mi uneli
         // https://www.omdbapi.com/?t=Terminator
 
-        axios.get(`${import.meta.env.VITE_OMDBAPI_URL}?t=${movieName}&apikey=${import.meta.env.VITE_OMDBAPI_KEY}`)
+        // axios.get(`${import.meta.env.VITE_OMDBAPI_URL}?t=${movieName}&apikey=${import.meta.env.VITE_OMDBAPI_KEY}`)
 
         // axios.get(import.meta.env.VITE_OMDBAPI_URL+"?t="+movieName+"&apikey="+import.meta.env.VITE_OMDBAPI_KEY)
             // * resenje: za movieData
             // response vec dobijamo od servera, i umesto console.log,  setMovieData
             // -> kada doijem oodgovor od servera: mi hocemo da podesimo kao: movieData !*
-            .then(response => setMovieData(response.data))
+            // .then(response => setMovieData(response.data))
 
             // .then(response => console.log(response.data))
             // .catch(error => console.log(error))
 
-    }
+    // }
 
     // uloga useEffect: jeste da izvrsi neki kod na pageload ili kada komponenta renderovanje
     // Kako se piise
-    useEffect( () => {
-        searchMovieByTitle();
-    }, []) // prazni array[] -> u prevodu: treba da prosledimo metodu koja se poziva da renderuje / * ako zelimo da se nesto izvrsi samo jednom: staviti  prazan array[] * !
+    // useEffect( () => {
+    //     searchMovieByTitle();
+    // }, []) // prazni array[] -> u prevodu: treba da prosledimo metodu koja se poziva da renderuje / * ako zelimo da se nesto izvrsi samo jednom: staviti  prazan array[] * !
 
     //  pozivanje nase metode: metoda cita iz steta: rekli smo da je defaultni state: useState("Lord of the rings") / ** on po defaultu podesava lord of the rings poziva api
 
@@ -104,10 +104,10 @@ const Movies3 = () => {
 
     return (
         <>
-            <form>
+            {/* <form>
                 <input type="text" onInput={ (e) => setMovieName(e.currentTarget.value)} />
                 <button type="button" onClick={searchMovieByTitle}>Search movie</button>
-            </form>
+            </form> */}
 
              {/* resenje domaceg: movieData / ispisivanje */}
             {/* <img src={ movieData.Poster} alt="" />
