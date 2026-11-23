@@ -26,8 +26,9 @@ console.log(apikey)
 // console.log(apiUrl)
 console.log(apiUrl)
 
-// * sa fetch -> mi pozivamo api
 // ** GET METODA kada imamo ovako vidljive (expose)?t=Terminator&apikey=b676ab91 ***
+
+// * sa fetch -> mi pozivamo api *
 
 fetch("https://www.omdbapi.com/?t=Terminator&apikey=b676ab91")
     // * sa prvim then -> hvatamo response ili ti odgovor koji dobija nazad -> u prvovim than console.log(response) -> mi dobijamo ugrubo podatke !
@@ -36,7 +37,6 @@ fetch("https://www.omdbapi.com/?t=Terminator&apikey=b676ab91")
 
     // * mi sa drugim then -> samo ispisujemo odgovor (te podatke) JSON
     .then(jsonResponse => console.log(jsonResponse))
-
 
 
 // fetch("https://www.omdbapi.com/?t=Terminator&apikey=b676ab91")
@@ -56,6 +56,7 @@ fetch("https://www.omdbapi.com/?t=Terminator&apikey=b676ab91")
 // * resenje:
 
 axios.get("https://www.omdbapi.com/?t=Terminator&apikey=b676ab91")
+    // .then(response => console.log(response))
     .then(response => console.log(response.data))
     .catch(error => console.log(error))
 
@@ -69,6 +70,8 @@ axios.get("https://www.omdbapi.com/?t=Terminator&apikey=b676ab91")
 // * vezba: imamo stavari u .emv i url i api key "https://www.omdbapi.com/?t=Terminator&apikey" -> da promenimo da ne poziva ovako https://www.omdbapi.com/? axios -> vec da iz .env povlaci te podatke, ne smemo da imamo nigde kljuc od apija vec koristeci .env izvucemo ove podatke https://www.omdbapi.com/ /// u axios pozivo treba da promenimo sve iz .env https://www.omdbapi.com/?t=Terminator&apikey=7b676ab91
 
 axios.get(import.meta.env.VITE_OMDBAPI_URL+"?t=Terminator&apikey="+import.meta.env.VITE_OMDBAPI_KEY)
+    .then(response => console.log(response.data)
+)
 
 console.log(import.meta.env.VITE_OMDBAPI_URL+"?t=Terminator&apikey="+import.meta.env.VITE_OMDBAPI_KEY)
 
@@ -95,7 +98,6 @@ console.log(import.meta.env.VITE_OMDBAPI_URL+"?t=Terminator&apikey="+import.meta
 
 // console.log(import.meta.env.VITE_OMDBAPI_URL+"?t=Terminator&apikey="+import.meta.env.VITE_OMDBAPI_KEY)
 
-
 // * domaci: forma u koju mogu upisati ime nekog filma
 
 const App = () => {
@@ -103,7 +105,7 @@ const App = () => {
     return (
         <>
             <Movies />
-            {/* <Movies2 /> */}
+            <Movies2 />
             {/* <Movies3 /> */}
         </>
     )

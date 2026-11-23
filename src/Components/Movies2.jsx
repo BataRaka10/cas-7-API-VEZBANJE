@@ -61,10 +61,9 @@ const Movies2 = () => {
     
     // metoda(funkcija)
     // response vec dobijamo od servera: console.log(response.data)
-
     const searchMovieByTitle = () => {
-        // console.log("Hello World")
-        // console.log(movieName)
+        console.log("Hello World")
+
 
         axios.get(`${import.meta.env.VITE_OMDBAPI_URL}?t=${movieName}&apikey=${import.meta.env.VITE_OMDBAPI_KEY}`)
 
@@ -84,7 +83,7 @@ const Movies2 = () => {
     //     searchMovieByTitle()
     // }, []); // ako zelimo da se nesatoo izvrsi samo jednom: staviti  prazan array[]
 
-    searchMovieByTitle();
+    // searchMovieByTitle();
 
     // nasa meteoda cita iz statea: po defaultui podesava:  useState("Lord of the rings")
     // searchMovieByTitle(); // pozivanje metode
@@ -93,14 +92,12 @@ const Movies2 = () => {
     return (
         <>
             <form>
-                <input type="text" onInput={ (e) => setMovieName(e.currentTarget.value)} />
+                <input type="text" />
                 <button type="button" onClick={searchMovieByTitle}>Search movie</button>
             </form>
 
             {/* resenje domaceg: movieData */}
-            <img src={movieData.Poster} alt="" />
-            <h3>{movieData.Title}</h3>
-            <p>{movieData.Plot}</p>
+
 
             {/* <img src={ movieData.Poster } alt="" />
             <h3>{ movieData.Title }</h3>

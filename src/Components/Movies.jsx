@@ -59,7 +59,7 @@ const Movies = () => {
     const [movieName, setMovieName] = useState("Lord of the rings")
 
     // resenje: na search movie pretraga da es promeni slika
-    const [movieData, setMovieData] = useState();
+    const [movieData, setMovieData] = useState({});
     // const [movieData, setMovieData] = useState({}); // {} = prazan objekat
     
     // metoda(funkcija)
@@ -87,20 +87,24 @@ const Movies = () => {
 
     }
 
+    // uloga useEffect: jeste da izvrsi neki kod na pageload ili kada komponenta renderovanje
+    // Kako se piise
     useEffect( () => {
         searchMovieByTitle();
-    }, []);
+    }, []); // prazni array[] -> u prevodu: treba da prosledimo metodu koja se poziva da renderuje / * ako zelimo da se nesto izvrsi samo jednom: staviti  prazan array[] * !
+
     // kako se pise:
     // useEffect( () => {
     //     searchMovieByTitle();
     // }, []); // ako zelimo da se nesatoo izvrsi samo jednom: staviti  prazan array[]
 
-    searchMovieByTitle();
+    // searchMovieByTitle();
 
-    // nasa meteoda cita iz statea: po defaultui podesava:  useState("Lord of the rings")
+    //  pozivanje nase metode: metoda cita iz steta: rekli smo da je defaultni state: useState("Lord of the rings") / ** on po defaultu podesava lord of the rings poziva api **
+
+    // * nasa meteoda cita iz statea: po defaultui podesava:  useState("Lord of the rings")
     // searchMovieByTitle(); // pozivanje metode
     // setMovieName("Test")
-
 
     return (
         <>
